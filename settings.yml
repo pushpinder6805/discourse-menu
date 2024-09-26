@@ -27,21 +27,6 @@ header_links:
       "additionalProperties": false
     }
   }'
-  links_position:
-  default: right
-  type: enum
-  choices:
-    - right
-    - left
-  description:
-    en: "Position of the links on the header. (Auto hidden on scroll when position is left)"
-
-dropdown_background_color:
-  default: 'var(--secondary)'
-  type: string
-  description:
-    en: "The background color of dropdowns. Note: it is recommended to use a color variable so dark mode will be supported."
-
 
 dropdown_links:
   description: "Dropdown Items (Submenu)"
@@ -87,6 +72,26 @@ dropdown_links:
               "url": {
                 "type": "string",
                 "minLength": 1
+              },
+              "sub_sub_dropdown_links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "icon": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "additionalProperties": false
+                }
               }
             },
             "additionalProperties": false
@@ -96,3 +101,102 @@ dropdown_links:
       "additionalProperties": false
     }
   }'
+
+links_position:
+  default: right
+  type: enum
+  choices:
+    - right
+    - left
+  description:
+    en: "Position of the links on the header. (Auto hidden on scroll when position is left)"
+
+dropdown_background_color:
+  default: 'var(--secondary)'
+  type: string
+  description:
+    en: "The background color of dropdowns. Note: it is recommended to use a color variable so dark mode will be supported."
+
+dropdown_border_color:
+  default: 'var(--primary-low)'
+  type: string
+  description:
+    en: "The border color of dropdowns. Use 'transparent' to hide borders."
+
+icon_source:
+  type: enum
+  default: font_awesome
+  description:
+    en: "Select where to source icons from (image url or font awesome class)"
+  choices:
+  - image_url
+  - font_awesome
+
+security:
+  description:
+    en: "Add security to a link by allowing only a specific group/trust level to see it"
+  default: >-
+  json_schema: '
+  {
+    "type": "array",
+    "format": "table",
+    "uniqueItems": true,
+    "items": {
+      "type": "object",
+      "properties": {
+        "headerLinkId": {
+          "type": "number",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "description": "Enter the group name"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+  '
+
+main_link_color:
+  default: 'var(--primary-low-mid)'
+  type: string
+  description:
+    en: "Color of main top level links. Note: it is recommended to use a color variable so dark mode will be supported."
+
+main_link_hover_color:
+  default: 'var(--primary-medium)'
+  type: string
+  description:
+    en: "Color of main top level links when hovered over. Note: it is recommended to use a color variable so dark mode will be supported."
+
+dropdown_item_color:
+  default: 'var(--primary-medium)'
+  type: string
+  description:
+    en: "Color of dropdown links. Note: it is recommended to use a color variable so dark mode will be supported."
+
+dropdown_item_hover_color:
+  default: 'var(--primary-medium)'
+  type: string
+  description:
+    en: "Color of dropdown links when hovered over. Note: it is recommended to use a color variable so dark mode will be supported."
+
+dropdown_item_hover_background_color:
+  default: 'var(--highlight-medium)'
+  type: string
+  description:
+    en: "Background color of dropdown links when hovered over. Note: it is recommended to use a color variable so dark mode will be supported."
+
+show_caret_icons:
+  default: true
+  type: bool
+  description:
+    en: "Show caret icons on dropdown links"
+
+svg_icons:
+  type: "list"
+  list_type: "compact"
+  default: ""
+  description:
+    en: "Add FontAwesome 5 icon classes for each icon used in the list and not already present in the Discourse instance."
