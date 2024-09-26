@@ -1,0 +1,11 @@
+.custom-header-links {
+  display: flex;
+
+  .custom-header-link {
+    display: flex;
+  }
+
+  @media screen and (max-width: 712px) {
+    display: none;
+  }
+}

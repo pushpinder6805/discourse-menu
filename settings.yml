@@ -1,0 +1,83 @@
+header_links:
+  description: "Top level header links"
+  default: >-
+  json_schema: '
+  {
+    "type": "array",
+    "format": "table",
+    "uniqueItems": true,
+    "items": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "icon": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }'
+
+dropdown_links:
+  description: "Dropdown Items (Submenu)"
+  default: >-
+  json_schema: '
+  {
+    "type": "array",
+    "format": "table",
+    "uniqueItems": true,
+    "items": {
+      "type": "object",
+      "properties": {
+        "headerLinkId": {
+          "type": "number",
+          "minLength": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "icon": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "sub_dropdown_links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "icon": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }'
