@@ -27,6 +27,21 @@ header_links:
       "additionalProperties": false
     }
   }'
+  links_position:
+  default: right
+  type: enum
+  choices:
+    - right
+    - left
+  description:
+    en: "Position of the links on the header. (Auto hidden on scroll when position is left)"
+
+dropdown_background_color:
+  default: 'var(--secondary)'
+  type: string
+  description:
+    en: "The background color of dropdowns. Note: it is recommended to use a color variable so dark mode will be supported."
+
 
 dropdown_links:
   description: "Dropdown Items (Submenu)"
