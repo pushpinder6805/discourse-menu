@@ -7,7 +7,7 @@ import { inject as service } from "@ember/service";
 import concatClass from "discourse/helpers/concat-class";
 import DiscourseURL from "discourse/lib/url";
 import dIcon from "discourse-common/helpers/d-icon";
-import CustomHeaderDropdown from "./custom-header-dropdown";
+import CustomHeaderDropdown from "./custom-header-dropdown"; // Ensure this import is correct
 import CustomIcon from "./custom-icon";
 
 export default class CustomHeaderLink extends Component {
@@ -24,7 +24,7 @@ export default class CustomHeaderLink extends Component {
 
     const permissions = JSON.parse(settings.security);
     const getPermissions = permissions
-      .filter((p) => p.headerLinkId === this.item.id)
+      .filter((p) => p.headerLinkId === this.item?.id)
       .map((p) => p.title);
 
     const currentUserGroups = this.currentUser?.groups.map((g) => g.name);
@@ -57,11 +57,9 @@ export default class CustomHeaderLink extends Component {
       ? JSON.parse(settings.dropdown_links)
       : [];
 
-    const dropdownLinks = allDropdownItems.filter(
-      (d) => d.headerLinkId === this.item.id
+    return allDropdownItems.filter(
+      (d) => d.headerLinkId === this.item?.id
     );
-
-    return dropdownLinks;
   }
 
   @action
