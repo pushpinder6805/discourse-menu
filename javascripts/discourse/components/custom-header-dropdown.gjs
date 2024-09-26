@@ -20,7 +20,7 @@ export default class CustomHeaderDropdown extends Component {
     event.stopPropagation();
   }
 
-  // Recursive method to render submenus and sub-submenus
+  // Recursive method to render submenus
   renderSubMenu(item) {
     if (item.subDropdownLinks && item.subDropdownLinks.length > 0) {
       return (
@@ -37,35 +37,12 @@ export default class CustomHeaderDropdown extends Component {
               {{#if subItem.description}}
                 <span class="custom-header-link-desc">{{subItem.description}}</span>
               {{/if}}
-              {{!-- Recursive call for sub-submenus --}}
-              {this.renderSubMenu(subItem)}
+              {{this.renderSubMenu subItem}}
             </li>
           ))}
         </ul>
       );
     }
-
-    if (item.subSubDropdownLinks && item.subSubDropdownLinks.length > 0) {
-      return (
-        <ul class="sub-sub-dropdown-menu">
-          {item.subSubDropdownLinks.map((subSubItem) => (
-            <li
-              class="custom-header-sub-submenu-link"
-              title={subSubItem.title}
-              role="button"
-              {{on "click" (fn this.redirectToUrl subSubItem.url)}}
-            >
-              <CustomIcon @icon={{subSubItem.icon}} />
-              <span class="custom-header-link-title">{{subSubItem.title}}</span>
-              {{#if subSubItem.description}}
-                <span class="custom-header-link-desc">{{subSubItem.description}}</span>
-              {{/if}}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-
     return null;
   }
 
@@ -82,7 +59,6 @@ export default class CustomHeaderDropdown extends Component {
         <span class="custom-header-link-desc">{{@item.description}}</span>
       {{/if}}
 
-      {{!-- Call to render submenus if they exist --}}
       {{this.renderSubMenu @item}}
     </li>
   </template>
