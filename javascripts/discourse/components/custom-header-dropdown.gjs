@@ -33,7 +33,7 @@ export default class CustomHeaderDropdown extends Component {
               {{on "click" (fn this.redirectToUrl subItem.url)}}
             >
               <CustomIcon @icon={{subItem.icon}} />
-              <span class="custom-header-link-title">{subItem.title}</span>
+              <span class="custom-header-link-title">{{subItem.title}}</span>
               {{#if subItem.description}}
                 <span class="custom-header-link-desc">{{subItem.description}}</span>
               {{/if}}
