@@ -46,8 +46,7 @@ export default class CustomHeaderDropdown extends Component {
     }
     return null;
   }
-  
-  // Inline template for rendering
+
   <template>
     <li
       class="custom-header-dropdown-link"
@@ -76,7 +75,7 @@ export default class CustomHeaderDropdown extends Component {
               {{#if subItem.description}}
                 <span class="custom-header-link-desc">{{subItem.description}}</span>
               {{/if}}
-              
+
               {{!-- Recursive submenu rendering --}}
               {{this.renderSubMenu subItem}}
             </li>
