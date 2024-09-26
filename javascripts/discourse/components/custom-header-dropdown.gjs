@@ -38,7 +38,7 @@ export default class CustomHeaderDropdown extends Component {
                 <span class="custom-header-link-desc">{{subItem.description}}</span>
               {{/if}}
               {{!-- Recursive call for sub-submenus --}}
-              {{this.renderSubMenu(subItem)}}
+              {this.renderSubMenu(subItem)}
             </li>
           ))}
         </ul>
