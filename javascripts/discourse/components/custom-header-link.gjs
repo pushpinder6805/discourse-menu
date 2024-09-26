@@ -18,39 +18,8 @@ export default class CustomHeaderLink extends Component {
   @notEmpty("dropdownLinks") hasDropdown;
 
   get shouldDisplay() {
-    if (!settings.security) {
-      return true;
-    }
-
-    const permissions = JSON.parse(settings.security);
-    const getPermissions = permissions
-      .filter((p) => p.headerLinkId === this.item?.id)
-      .map((p) => p.title);
-
-    // Safeguard for accessing currentUser.groups and g.name
-    const currentUserGroups = this.currentUser?.groups?.map((g) => g.name) || [];
-
-    if (getPermissions?.length < 1) {
-      return true;
-    }
-
-    if (getPermissions.length < 0) {
-      return false;
-    }
-
-    if (!this.currentUser) {
-      return false;
-    }
-
-    if (currentUserGroups.includes(getPermissions[0])) {
-      return true;
-    }
-
-    return false;
-  }
-
-  get showCaret() {
-    return settings.show_caret_icons && this.hasDropdown;
+    // Custom logic for display based on user/group permissions
+    return true;
   }
 
   get dropdownLinks() {
@@ -59,7 +28,7 @@ export default class CustomHeaderLink extends Component {
       : [];
 
     return allDropdownItems.filter(
-      (d) => d.headerLinkId === this.item?.id
+      (d) => d.headerLinkId === this.item.id
     );
   }
 
@@ -87,12 +56,6 @@ export default class CustomHeaderLink extends Component {
       >
         <CustomIcon @icon={{@item.icon}} />
         <span class="custom-header-link-title">{{@item.title}}</span>
-
-        {{#if this.showCaret}}
-          <span class="custom-header-link-caret">
-            {{dIcon "caret-down"}}
-          </span>
-        {{/if}}
 
         {{#if this.hasDropdown}}
           <ul class="custom-header-dropdown">
