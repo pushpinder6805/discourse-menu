@@ -7,7 +7,7 @@ import { inject as service } from "@ember/service";
 import concatClass from "discourse/helpers/concat-class";
 import DiscourseURL from "discourse/lib/url";
 import dIcon from "discourse-common/helpers/d-icon";
-import CustomHeaderDropdown from "./custom-header-dropdown"; // Ensure this import is correct
+import CustomHeaderDropdown from "./custom-header-dropdown";
 import CustomIcon from "./custom-icon";
 
 export default class CustomHeaderLink extends Component {
@@ -27,7 +27,8 @@ export default class CustomHeaderLink extends Component {
       .filter((p) => p.headerLinkId === this.item?.id)
       .map((p) => p.title);
 
-    const currentUserGroups = this.currentUser?.groups.map((g) => g.name);
+    // Safeguard for accessing currentUser.groups and g.name
+    const currentUserGroups = this.currentUser?.groups?.map((g) => g.name) || [];
 
     if (getPermissions?.length < 1) {
       return true;
